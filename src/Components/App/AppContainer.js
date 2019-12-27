@@ -7,20 +7,24 @@ class AppContainer extends Component {
   // 인스턴스가 생성되었을때 Store가 value를 얻기때문
   constructor(props) {
     super(props);
-    this._changeMessage = () => {
-      if(this.state.messgage === "Hello") {
-        this.setState({
-          messgage: "Bye Bye"
-        });
-      } else {
-        this.setState({
-          messgage: "Hello"
-        });
-      }
-    }
     this.state = {
-      messgage: "Hello",
-      changeMessage: this._changeMessage
+      notifications: {
+        "1": {
+          id: 1,
+          text: "Something",
+          seen :false
+        },
+        "2": {
+          id: 2,
+          text: "Something else",
+          seen :false
+        },
+        "3": {
+          id: 3,
+          text: "Something else but different",
+          seen :false
+        },
+      }
     }
   }
   render() {
