@@ -7,6 +7,29 @@ class AppContainer extends Component {
   // 인스턴스가 생성되었을때 Store가 value를 얻기때문
   constructor(props) {
     super(props);
+    // 알림 삭제
+    this._deleteNotification = (id) => {
+      this.setState(currentState => {
+        const newState = delete currentState.notifications[id];
+        return newState;
+      });
+    }
+    // 알림 봤음(확인함)
+    this._seeNotification = (id) => {
+      console.log(this.state.notifications[id].seen)
+      this.setState((currentState) => { 
+        return { 
+          ...currentState,
+          notifications: {
+            ...currentState.notifications,
+            [id] : {
+              ...currentState.notifications[id],
+              seen: true
+            }
+          }
+        }
+      });
+    }
     this.state = {
       notifications: {
         "1": {
@@ -24,7 +47,9 @@ class AppContainer extends Component {
           text: "Something else but different",
           seen :false
         },
-      }
+      },
+      deleteNotification: this._deleteNotification,
+      seeNotification: this._seeNotification,
     }
   }
   render() {
