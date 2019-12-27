@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, {  } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
@@ -57,7 +57,7 @@ const NotificationPresenter = ({ id, text, seen }) => (
     <Flex alignCenter justifyBetween>
       <Title>{text}</Title>
       <FlexItem>
-        <Fragment>
+        <>
           <Store.Consumer>
             {store => (
               <>
@@ -70,14 +70,11 @@ const NotificationPresenter = ({ id, text, seen }) => (
               </>
             )}
           </Store.Consumer>
-        </Fragment>
+        </>
       </FlexItem>
     </Flex>
   </Notification>
 );
-NotificationPresenter.defaultProps = {
-  id: 0
- }
 
 NotificationPresenter.propTypes = {
   text: PropTypes.string.isRequired,

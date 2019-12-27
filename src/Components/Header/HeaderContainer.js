@@ -1,6 +1,16 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import HeaderPresenter from "./HeaderPresenter";
 
+const HeaderContainer = () => {
+  let propTypes = {};
+  let state = useState({});
+
+  return <HeaderPresenter {...state} />;
+};
+
+export default HeaderContainer;
+
+/*
 class HeaderContainer extends Component {
   static propTypes = {};
   state = {};
@@ -8,5 +18,5 @@ class HeaderContainer extends Component {
     return <HeaderPresenter {...this.state} />;
   }
 }
-
 export default HeaderContainer;
+*/
