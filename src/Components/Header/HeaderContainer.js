@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import HeaderPresenter from "./HeaderPresenter";
 
 const HeaderContainer = () => {
-  let propTypes = {};
   let state = useState({});
 
   return <HeaderPresenter {...state} />;

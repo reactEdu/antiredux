@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
 import FontAwesome from "react-fontawesome";
@@ -46,7 +46,7 @@ const Number = styled.span`
 
 const getUnseen = (notifications) => {
   let unseen = [];
-  Object.keys(notifications).map(key => {
+  Object.keys(notifications).forEach(key => {
     if(!notifications[key].seen) {
       return unseen.push(notifications[key]);
     }
@@ -54,32 +54,34 @@ const getUnseen = (notifications) => {
   return unseen.length;
 }
 
-const HeaderPresenter = () => (
-  <Header>
-    <Flex full justifyBetween alignCenter>
-      <FlexItem>
-        <h3>Antiredux</h3>
-      </FlexItem>
-      <FlexItem>
-        <Flex>
-          <HeaderIcon>
-            <FontAwesome name="user" />
-          </HeaderIcon>
-          <HeaderIcon>
-            <FontAwesome name="cog" />
-          </HeaderIcon>
-          <HeaderIcon>
-            <FontAwesome name="bell" />
-            <Number>
-              <Store.Consumer>
-                {store => getUnseen(store.notifications)}
-              </Store.Consumer>
-            </Number>
-          </HeaderIcon>
-        </Flex>
-      </FlexItem>
-    </Flex>
-  </Header>
-);
+const HeaderPresenter = () => {
+  const store = useContext(Store);
+
+  return (
+    <Header>
+      <Flex full justifyBetween alignCenter>
+        <FlexItem>
+          <h3>Antiredux</h3>
+        </FlexItem>
+        <FlexItem>
+          <Flex>
+            <HeaderIcon>
+              <FontAwesome name="user" />
+            </HeaderIcon>
+            <HeaderIcon>
+              <FontAwesome name="cog" />
+            </HeaderIcon>
+            <HeaderIcon>
+              <FontAwesome name="bell" />
+              <Number>
+                {getUnseen(store.notifications)}
+              </Number>
+            </HeaderIcon>
+          </Flex>
+        </FlexItem>
+      </Flex>
+    </Header>
+  );
+}
 
 export default HeaderPresenter;

@@ -27,6 +27,7 @@ const AppContainer = () => {
       console.log(currentState[id])
 
       // const newState = Object.assign({}, currentState);
+      // const newState = JSON.parse(JSON.stringify(currentState));
       const newState = {...currentState}
       delete newState[id]
 
